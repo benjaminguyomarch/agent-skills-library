@@ -1,6 +1,6 @@
 # agent-skills-library
 
-Bibliothèque personnelle d'agents et skills pour Claude Code, organisée selon le standard [Agent Skills](https://agentskills.io) (agentskills.io) — inspirée de [anthropics/skills](https://github.com/anthropics/skills).
+Bibliothèque personnelle d'agents et skills pour Claude Code, organisée selon le standard [Agent Skills](https://agentskills.io) — inspirée de [anthropics/skills](https://github.com/anthropics/skills).
 
 ## Structure
 
@@ -28,17 +28,15 @@ Enregistre ce repo comme plugin marketplace :
 
 ## Créer un nouveau skill
 
-Copie le template :
+Copie le template et édite-le :
 
 ```bash
 cp -r template/ skills/mon-nouveau-skill/
+# puis édite skills/mon-nouveau-skill/SKILL.md
 ```
-
-Édite `skills/mon-nouveau-skill/SKILL.md` en suivant les règles du `CLAUDE.md`.
 
 ## Ressources
 
-- [Agent Skills Spec](https://agentskills.io/specification)
+- [Agent Skills Specification](https://agentskills.io/specification)
 - [anthropics/skills](https://github.com/anthropics/skills)
 - [Claude Code Docs](https://docs.claude.com)
-
