@@ -34,6 +34,7 @@ This grows as the library grows. Keep entries specific so the right skill fires 
 | User intent / trigger | Skill |
 | --- | --- |
 | Summarize or condense a text/document | `example-skill` |
+| Visualize a process or create a Whimsical flowchart/mind map | `visual-diagram` |
 | _(add your skills here)_ | _(skill name)_ |
 
 ## Anti-rationalization
