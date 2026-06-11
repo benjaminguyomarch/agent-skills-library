@@ -1,55 +1,72 @@
 ---
-name: template-skill
+name: skill-name
 description: >
-  Template de départ pour créer un nouveau skill.
-  Utiliser ce fichier comme base pour tout nouveau skill de la bibliothèque.
+  [What the skill does, third person, present tense]. Use when [specific triggers,
+  contexts, or phrases the user might say]. Keep it specific and include key terms —
+  this is the only signal used to select the skill.
 license: Apache-2.0
 metadata:
   author: benjaminguyomarch
   version: "1.0"
 ---
 
-# Nom du Skill
+<!--
+  description rules (voir docs/skill-anatomy.md) :
+  - Toujours à la 3e personne ("Generates…", jamais "You can…" / "I can…").
+  - Dire CE QUE fait le skill ET QUAND l'utiliser, avec des mots-clés déclencheurs.
+  - Une description un peu "insistante" aide : Claude a tendance à sous-déclencher.
+-->
 
-Résumé en 1-2 phrases de ce que ce skill accomplit et sa valeur principale.
+# Skill Title
 
-## Quand utiliser ce skill
+One or two sentences: what this skill accomplishes and the value it provides.
 
-- Cas d'usage 1 : [description]
-- Cas d'usage 2 : [description]
-- Mots-clés déclencheurs : [mot1, mot2, mot3]
+## When to use this skill
 
-## Instructions
+<!-- Conditions de déclenchement concrètes, pas du vague. -->
 
-### Étape 1 — [Nom de l'étape]
+- Trigger 1: [specific situation]
+- Trigger 2: [specific situation]
+- Trigger phrases: [word1, word2, word3]
 
-[Instructions détaillées pour cette étape. Expliquer le pourquoi, pas seulement le comment.]
+Do **not** use this skill when [counter-example], because [reason].
 
-### Étape 2 — [Nom de l'étape]
+## Process
 
-[Instructions détaillées.]
+<!-- Étapes actionnables. Expliquer le POURQUOI, pas seulement le COMMENT. -->
 
-### Étape 3 — [Nom de l'étape]
+### Step 1 — [Name]
 
-[Instructions détaillées.]
+[Instruction]. This matters because [reason], which lets the agent handle cases this
+skill did not spell out.
 
-## Exemples
+### Step 2 — [Name]
 
-**Exemple 1 :**
-- Input : [description de l'entrée]
-- Output attendu : [description du résultat]
+[Instruction].
 
-**Exemple 2 :**
-- Input : [description de l'entrée]
-- Output attendu : [description du résultat]
+### Step 3 — [Name]
 
-## Edge cases et précautions
+[Instruction].
 
-- [Cas limite ou erreur fréquente 1]
-- [Cas limite ou erreur fréquente 2]
+## Common mistakes
 
-## Références
+<!-- Erreurs fréquentes + l'excuse que l'agent pourrait se donner. -->
 
-<!-- Décommenter si des fichiers supplémentaires existent -->
-<!-- - Voir [references/REFERENCE.md](references/REFERENCE.md) pour la documentation détaillée -->
-<!-- - Script principal : [scripts/main.py](scripts/main.py) -->
+- Mistake: [what goes wrong]. Excuse the agent might make: "[rationalization]".
+  Correct behavior: [what to do instead].
+- Mistake: [what goes wrong]. Correct behavior: [what to do instead].
+
+## Verification
+
+<!-- Critères de sortie basés sur des preuves : "ça semble correct" ne suffit pas. -->
+
+The task is done only when:
+
+- [ ] [Concrete, checkable outcome — e.g. output matches the required format]
+- [ ] [Evidence, not impression — e.g. example ran and produced expected result]
+
+## References
+
+<!-- Décommenter si des fichiers de support existent (chargés à la demande). -->
+<!-- - See [reference.md](reference.md) for detailed material. -->
+<!-- - Main script: [scripts/main.sh](scripts/main.sh) -->
