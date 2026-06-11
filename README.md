@@ -1,42 +1,72 @@
 # agent-skills-library
 
-Bibliothèque personnelle d'agents et skills pour Claude Code, organisée selon le standard [Agent Skills](https://agentskills.io) — inspirée de [anthropics/skills](https://github.com/anthropics/skills).
+**A personal library of Agent Skills, portable across AI coding agents.**
+
+<!-- Bibliothèque personnelle de skills, portable entre différents agents IA -->
+
+Skills are packaged instructions that extend an AI agent's capabilities. Each skill is a
+self-contained folder with a `SKILL.md` file that the agent loads on demand. This repo follows
+the [Agent Skills](https://agentskills.io) specification, so its content works with any agent
+that accepts instruction files — Claude Code, Cursor, Gemini CLI, Copilot, OpenCode, and more.
+
+## Why this structure is portable
+
+<!-- Le contenu de valeur (skills, règles) reste en Markdown standard.
+     Les fichiers spécifiques à un outil ne sont qu'une fine couche d'adaptation. -->
+
+| File / folder | Portable? | Notes |
+| --- | --- | --- |
+| `skills/*/SKILL.md` | ✅ Universal | Plain Markdown, read by any agent |
+| `AGENTS.md` | ✅ Multi-tool standard | Read natively by Cursor, OpenCode, Copilot… |
+| `CLAUDE.md` | ⚠️ Claude Code only | Thin adapter layer; mirror as `GEMINI.md` etc. |
+| `hooks/` | ❌ Tool-specific | Claude Code lifecycle scripts (see `hooks/README.md`) |
+
+The rule: your real value (skills, conventions) stays in standard Markdown. Tool-specific files
+are thin adapters that point to that content — never unique content. Switch agents tomorrow and
+you only rewrite the adapter, not your library.
 
 ## Structure
 
 ```
 agent-skills-library/
-├── CLAUDE.md                  ← instructions globales pour Claude Code
-├── README.md                  ← ce fichier
+├── README.md                  # this file
+├── AGENTS.md                  # cross-agent guidance (the portable brain)
+├── CLAUDE.md                  # Claude Code adapter (short, points to AGENTS.md)
+├── CONTRIBUTING.md            # checklist before adding a skill
 ├── template/
-│   └── SKILL.md               ← template de départ obligatoire
-└── skills/
-    └── [nom-du-skill]/
-        ├── SKILL.md
-        ├── scripts/           ← optionnel
-        ├── references/        ← optionnel
-        └── assets/            ← optionnel
+│   └── SKILL.md               # starting point for every new skill
+├── skills/
+│   └── example-skill/
+│       └── SKILL.md           # reference skill in the correct format
+├── docs/
+│   └── skill-anatomy.md       # how to write a good skill
+└── hooks/
+    └── README.md              # when/how to add hooks (no active hook)
 ```
 
-## Utilisation avec Claude Code
+## Quick start
 
-Enregistre ce repo comme plugin marketplace :
+**Claude Code**
 
-```bash
+```
 /plugin marketplace add benjaminguyomarch/agent-skills-library
 ```
 
-## Créer un nouveau skill
+**Cursor** — copy a `SKILL.md` into `.cursor/rules/`, or reference the `skills/` directory.
 
-Copie le template et édite-le :
+**Gemini CLI** — add skills to `GEMINI.md`, or `gemini skills install` from this repo.
+
+**Any other agent** — skills are plain Markdown; paste the relevant `SKILL.md` into context.
+
+## Create a new skill
 
 ```bash
-cp -r template/ skills/mon-nouveau-skill/
-# puis édite skills/mon-nouveau-skill/SKILL.md
+cp -r template/ skills/my-new-skill/
+# then edit skills/my-new-skill/SKILL.md following docs/skill-anatomy.md
 ```
 
-## Ressources
+## References
 
-- [Agent Skills Specification](https://agentskills.io/specification)
+- [Agent Skills Specification](https://agentskills.io)
+- [Anthropic — Skill authoring best practices](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices)
 - [anthropics/skills](https://github.com/anthropics/skills)
-- [Claude Code Docs](https://docs.claude.com)
