@@ -34,12 +34,14 @@ Do not use for static image exports, Mermaid diagrams, or draw.io boards.
 ### 1. Clarify the output type
 
 If the user has not specified, ask:
+
 - Flowchart (sequential steps, decisions, loops) → `type: flowchart`
 - Mind map (hierarchical tree, brainstorm) → `type: mindmap`
 
 ### 2. Extract the structure
 
 From the user's description, identify:
+
 - **Nodes**: each distinct step, action, or concept
 - **Edges**: connections between nodes (with labels on decisions)
 - **Branches**: decision diamonds with exactly two labelled exits
@@ -48,6 +50,7 @@ From the user's description, identify:
 ### 3. Apply diagram constraints
 
 **Always:**
+
 - `direction: left-right` for flowcharts — return arrows route cleanly
   below the main flow; top-down causes diagonal crossing lines
 - Use only 3 node colours maximum:
@@ -60,6 +63,7 @@ From the user's description, identify:
   they break layout alignment; embed detail in the node label on line 2
 
 **Never:**
+
 - Use more than 3 colours in a single diagram
 - Use `top-down` direction (causes overlapping return arrows)
 - Add groups (swimlane sections) when auto_layout will be called —
@@ -81,7 +85,12 @@ For flowcharts, pass:
     "nodes": [
       { "id": "start", "label": "Start", "shape": "ellipse", "color": "green" },
       { "id": "step1", "label": "Step label\nKey detail" },
-      { "id": "decision", "label": "Decision ?", "shape": "diamond", "color": "yellow" },
+      {
+        "id": "decision",
+        "label": "Decision ?",
+        "shape": "diamond",
+        "color": "yellow"
+      },
       { "id": "end", "label": "End", "shape": "ellipse", "color": "green" }
     ],
     "edges": [
@@ -117,6 +126,7 @@ perfectly.
 ### 6. Verify visually before returning
 
 Call `Whimsical:fetch` with `image: true` and inspect the screenshot:
+
 - All nodes visible and not overlapping
 - Decision diamonds have exactly 2 labelled exits
 - Return arrows routed below the main flow (not diagonal)
@@ -151,6 +161,22 @@ it after creating or editing a flowchart (unless groups are used).
 layout frames. Calling auto_layout after creating groups repositions
 nodes outside their group boundaries, breaking the swimlane structure.
 Choose one: groups (swimlanes) OR auto_layout — not both.
+
+## Dependencies
+
+| Server | Package | Required env vars |
+| --- | --- | --- |
+| `whimsical` | Provided by the Whimsical MCP plugin (no npm package — install via Claude Code MCP settings or the Whimsical desktop integration) | None — authentication is handled interactively on first use |
+
+Add to `.claude/settings.json` or `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "allow": ["mcp__whimsical__*"]
+  }
+}
+```
 
 ## Verification checklist
 

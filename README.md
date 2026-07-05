@@ -35,9 +35,18 @@ agent-skills-library/
 ├── CONTRIBUTING.md            # checklist before adding a skill
 ├── template/
 │   └── SKILL.md               # starting point for every new skill
-├── skills/
-│   └── example-skill/
-│       └── SKILL.md           # reference skill in the correct format
+├── skills/                    # skills maison
+│   ├── example-skill/         # reference skill in the correct format
+│   ├── seo-audit/             # audit SEO post-déploiement (PageSpeed, pa11y, headers)
+│   ├── visual-diagram/        # flowcharts & mind maps Whimsical
+│   ├── site-vitrine-pipeline/ # pipeline 16 étapes site vitrine statique (ex-morgane)
+│   ├── design-tokens-setup/   # tokens 3 niveaux → Figma/Tailwind/Style Dictionary/Webflow
+│   ├── prd-writer/            # PRD + doc architecture technique (format ds2)
+│   └── css-architecture/      # CSS modulaire + Web Components natifs (ex-portfolionew2)
+├── external/                  # librairies tierces clonées (lecture/inspiration)
+│   ├── anthropics-skills/     # officiel : frontend-design, theme-factory, docx/pdf/pptx/xlsx…
+│   └── superpowers/           # méthodologie : brainstorm→plan→TDD→debug (installer en plugin)
+├── install-user-skills.sh     # copie les indispensables dans ~/.claude/skills
 ├── docs/
 │   └── skill-anatomy.md       # how to write a good skill
 └── hooks/

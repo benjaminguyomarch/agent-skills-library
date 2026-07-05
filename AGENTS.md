@@ -35,7 +35,24 @@ This grows as the library grows. Keep entries specific so the right skill fires 
 | --- | --- |
 | Summarize or condense a text/document | `example-skill` |
 | Visualize a process or create a Whimsical flowchart/mind map | `visual-diagram` |
+| Audit SEO or compliance post-deployment — "audit SEO", "vérifier le SEO", "conformité SEO", "seo-audit" | `seo-audit` |
+| Structure vanilla/lightly-tooled CSS into base/colors/components/layout/sections/effects, or build native Web Components — "architecture CSS", "organiser le CSS", "web components" | `css-architecture` |
+| Set up or restructure design tokens (primitives/semantics/components), sync Figma variables with code — "design tokens", "variables Figma", "collections", "theme setup" | `design-tokens-setup` |
+| Write a PRD / cahier des charges in French before starting a multi-screen app | `prd-writer` |
+| Build or restructure a static showcase/marketing site (site vitrine) for a client — "site vitrine", "nouveau site client", "comme morgane" | `site-vitrine-pipeline` |
 | _(add your skills here)_ | _(skill name)_ |
+
+## Design tokens — chaîne de source de vérité
+
+<!-- Trois skills touchent les design tokens avec des rôles distincts — ne pas les traiter comme des sources concurrentes. -->
+
+Trois skills manipulent des tokens ; ils forment une chaîne, pas trois sources concurrentes :
+
+1. **`ressources/collections-variables-setup/`** — bibliothèque de primitives réutilisable, indépendante de tout projet (couleurs, spacing, radii en JSON).
+2. **`design-tokens-setup`** — à partir des primitives ci-dessus, produit et maintient la source de vérité *par projet* (typiquement `content/theme.json` sur la stack `site-vitrine-pipeline`, ou l'équivalent Style Dictionary/Webflow).
+3. **Fichiers générés au build** (`tokens.css`, `variables.css`) — dérivés automatiquement de l'étape 2, jamais édités à la main. `css-architecture` les consomme en lecture pour un projet vanilla CSS ; sur la stack `site-vitrine-pipeline`, c'est `build.js` qui les régénère depuis `theme.json`.
+
+Si un projet a déjà un `theme.json` géré par `design-tokens-setup`, ne pas dupliquer ses valeurs à la main dans `base/variables.css` — le générer depuis la même source.
 
 ## Anti-rationalization
 
@@ -61,6 +78,69 @@ the cost of re-deriving a tested workflow is not.
 5. Add the skill to the Intent → skill mapping table above.
 
 See `CONTRIBUTING.md` for the full checklist and `docs/skill-anatomy.md` for the format.
+
+## MCP servers
+
+MCP (Model Context Protocol) servers extend the agent with external tool access. Configuration
+lives in `settings.json` — never in markdown files, which are documentation only.
+
+### Configuration locations
+
+| Scope | File |
+| --- | --- |
+| Global (all projects) | `~/.claude/settings.json` |
+| Project-only | `.claude/settings.json` |
+
+### Minimal server entry
+
+```json
+{
+  "mcpServers": {
+    "<server-name>": {
+      "command": "npx",
+      "args": ["-y", "<npm-package>"],
+      "env": { "API_KEY": "${MY_API_KEY}" }
+    }
+  }
+}
+```
+
+Prefer `${ENV_VAR}` references over hardcoded secrets. Store actual values in your shell profile or
+a `.env` file that is not committed.
+
+### Permissions
+
+Allow specific tools or whole servers under `permissions.allow`:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "mcp__<server-name>__<tool-name>",
+      "mcp__<server-name>__*"
+    ]
+  }
+}
+```
+
+Use `mcp__<server>__*` wildcards for servers you fully trust. Add granular entries for sensitive
+servers (e.g. only allow read tools, not write tools).
+
+### Adding a server for a new skill
+
+When a skill requires an MCP server, add a comment in the skill's `SKILL.md` under a
+`## Dependencies` section that lists the server name, the npm package, and the required env vars.
+The reader can then add the entry to their `settings.json` without guessing.
+
+### Debugging connections
+
+```bash
+# List servers and their current status
+claude mcp list
+
+# Check logs for a specific server
+claude mcp get <server-name>
+```
 
 ## Conventions
 
