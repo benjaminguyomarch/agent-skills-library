@@ -42,7 +42,10 @@ agent-skills-library/
 │   ├── site-vitrine-pipeline/ # pipeline 16 étapes site vitrine statique (ex-morgane)
 │   ├── design-tokens-setup/   # tokens 3 niveaux → Figma/Tailwind/Style Dictionary/Webflow
 │   ├── prd-writer/            # PRD + doc architecture technique (format ds2)
-│   └── css-architecture/      # CSS modulaire + Web Components natifs (ex-portfolionew2)
+│   ├── css-architecture/      # CSS modulaire + Web Components natifs (ex-portfolionew2)
+│   ├── emil-design-eng/       # vendoré (MIT) — UI polish & animation, philosophie Emil Kowalski
+│   ├── review-animations/     # vendoré (MIT) — revue stricte d'animations, invocation explicite
+│   └── animation-vocabulary/  # vendoré (MIT) — glossaire d'effets d'animation
 ├── external/                  # librairies tierces clonées (lecture/inspiration)
 │   ├── anthropics-skills/     # officiel : frontend-design, theme-factory, docx/pdf/pptx/xlsx…
 │   └── superpowers/           # méthodologie : brainstorm→plan→TDD→debug (installer en plugin)

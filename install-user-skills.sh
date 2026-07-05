@@ -22,6 +22,13 @@ for s in frontend-design theme-factory web-artifacts-builder webapp-testing skil
   echo "✓ $s (anthropics)"
 done
 
+# --- Vendorés (emilkowalski/skills, MIT) ---
+for s in emil-design-eng review-animations animation-vocabulary; do
+  rm -rf "$DEST/$s"
+  cp -R "$LIB/skills/$s" "$DEST/$s"
+  echo "✓ $s (emilkowalski)"
+done
+
 echo
 echo "Installé dans $DEST — vérifie avec /skills dans Claude Code."
 echo "Pour superpowers (méthodologie brainstorm→plan→TDD→debug), installe-le en plugin :"

@@ -40,7 +40,12 @@ This grows as the library grows. Keep entries specific so the right skill fires 
 | Set up or restructure design tokens (primitives/semantics/components), sync Figma variables with code — "design tokens", "variables Figma", "collections", "theme setup" | `design-tokens-setup` |
 | Write a PRD / cahier des charges in French before starting a multi-screen app | `prd-writer` |
 | Build or restructure a static showcase/marketing site (site vitrine) for a client — "site vitrine", "nouveau site client", "comme morgane" | `site-vitrine-pipeline` |
+| UI polish, component design, or animation/motion decisions — general "make this feel right" front-end craft questions | `emil-design-eng` |
+| Review animation/motion code against a strict craft bar (explicit invocation only, does not auto-trigger) | `review-animations` |
+| Name an animation effect from a vague description ("what's it called when…") | `animation-vocabulary` |
 | _(add your skills here)_ | _(skill name)_ |
+
+`emil-design-eng`, `review-animations` et `animation-vocabulary` sont vendorés tels quels depuis [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, non modifiés sauf ajout des métadonnées de source) — ne pas les faire dériver de `template/SKILL.md` ni les réécrire pour coller aux conventions internes (ex. limite de ~500 lignes) : ce sont des skills tiers, pas des skills maison.
 
 ## Design tokens — chaîne de source de vérité
 
