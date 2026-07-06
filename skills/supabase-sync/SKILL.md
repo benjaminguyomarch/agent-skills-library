@@ -70,7 +70,18 @@ to a new `.env` at the project root. Before writing it, check `.gitignore` alrea
 — if it doesn't, add it **first**, in its own commit if git history matters, because a secret
 committed even briefly stays in history after the fact.
 
-### Step 5 — Fix the import script and register its npm command
+Never let the raw key-listing command print to a visible/logged terminal (a chat transcript, a CI
+log). Redirect it straight to a temp file and parse that, writing only into `.env` — printing a
+service-role key to stdout even once means it now lives wherever that output was captured, which
+is a leak regardless of `.env` being correct afterward. If a key does leak this way, tell the user
+to rotate it — don't treat "it's in `.env` now" as remediation for "it was printed earlier."
+
+Also check which key format the project uses: newer Supabase projects issue `sb_publishable_...` /
+`sb_secret_...` keys alongside (or instead of) the legacy JWT `anon`/`service_role` pair, and the
+dashboard may only offer **Delete** + **Create new** for legacy keys, not "regenerate" — that's
+expected, not a missing feature to work around.
+
+### Step 5 — Fix the import script, register its npm command, make it idempotent
 
 Any script that calls the Supabase API should read credentials from `process.env` (populated by
 `.env`, e.g. via `node --env-file=.env`) and should be reachable by the exact npm command its own
@@ -78,6 +89,12 @@ usage comment advertises — grep the script for the command it claims to run
 (`npm run import:...`) and add that entry to `package.json` if it's missing. An orphaned script
 that references a command nobody registered is worse than no script: it looks wired up but silently
 never runs.
+
+If the script's job is to mirror a JSON source into a table (rather than append incrementally),
+make it idempotent: delete existing rows before inserting, rather than a bare `POST`. A mirror
+script that's only ever run once during setup looks fine until it's re-run after a key rotation or
+a content re-export — a bare insert with no natural unique key to upsert against silently doubles
+every row. Verify by running the import twice in a row and confirming the row count doesn't change.
 
 ### Step 6 — Document and record the decision
 
@@ -102,6 +119,13 @@ recurring.
 - Mistake: skipping the decision-log entry because "it's just infra, not a real decision." Correct
   behavior: if a project already documents its architecture decisions, a new backend is exactly the
   kind of thing that belongs there — future readers (human or agent) need the why, not just the diff.
+- Mistake: running `supabase projects api-keys` (or similar) without redirecting output, so a
+  secret prints straight into a visible transcript/log. Excuse: "I need to see the value to use
+  it." Correct behavior: redirect to a file and parse that; if it already printed, tell the user to
+  rotate the key rather than treating the subsequent `.env` write as sufficient remediation.
+- Mistake: writing an import/mirror script as a bare `INSERT`/`POST` and assuming it only ever runs
+  once. Correct behavior: delete-then-insert (or a real upsert on a genuinely unique key), verified
+  by running it twice and checking the row count is stable.
 
 ## Verification
 
@@ -109,7 +133,9 @@ The task is done only when:
 
 - [ ] `supabase projects list` (or `supabase status` for the linked project) shows the project exists.
 - [ ] A REST query against the project (e.g. `curl "$SUPABASE_URL/rest/v1/<table>?select=*" -H "apikey: $SUPABASE_ANON_KEY"`) returns the expected rows after running the import script.
+- [ ] Running the import script twice in a row leaves the row count unchanged (no duplication).
 - [ ] `git status --short` never shows `.env` as trackable (it's gitignored before creation).
 - [ ] The import script's own usage comment names an npm command that actually exists in `package.json` and runs successfully.
 - [ ] `docs/90_system/supabase.md` (or equivalent) exists and matches what the script/docs actually reference.
+- [ ] No key-listing command's raw output was left visible in a transcript/log without being redirected to a file first.
 - [ ] A decision-log entry exists explaining why the database exists and which source is authoritative.
