@@ -43,6 +43,7 @@ This grows as the library grows. Keep entries specific so the right skill fires 
 | UI polish, component design, or animation/motion decisions — general "make this feel right" front-end craft questions | `emil-design-eng` |
 | Review animation/motion code against a strict craft bar (explicit invocation only, does not auto-trigger) | `review-animations` |
 | Name an animation effect from a vague description ("what's it called when…") | `animation-vocabulary` |
+| Provision/link a Supabase project via CLI + access token, apply schema.sql, wire .env — "brancher Supabase", "créer un projet Supabase", fix an orphaned Supabase import script | `supabase-sync` |
 | _(add your skills here)_ | _(skill name)_ |
 
 `emil-design-eng`, `review-animations` et `animation-vocabulary` sont vendorés tels quels depuis [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, non modifiés sauf ajout des métadonnées de source) — ne pas les faire dériver de `template/SKILL.md` ni les réécrire pour coller aux conventions internes (ex. limite de ~500 lignes) : ce sont des skills tiers, pas des skills maison.
