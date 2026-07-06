@@ -45,6 +45,7 @@ This grows as the library grows. Keep entries specific so the right skill fires 
 | Name an animation effect from a vague description ("what's it called when…") | `animation-vocabulary` |
 | Provision/link a Supabase project via CLI + access token, apply schema.sql, wire .env — "brancher Supabase", "créer un projet Supabase", fix an orphaned Supabase import script | `supabase-sync` |
 | Keep a published roadmap Artifact (chantiers/checklist) in sync after each plan step completes — redeploy to the same URL, don't batch updates | `roadmap-artifact-sync` |
+| Fail-fast content JSON validation in a build script, single-source URLs, pre-deploy checklist — "éviter cette erreur au prochain build", "garde-fou avant déploiement" | `project-guard` |
 | _(add your skills here)_ | _(skill name)_ |
 
 `emil-design-eng`, `review-animations` et `animation-vocabulary` sont vendorés tels quels depuis [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, non modifiés sauf ajout des métadonnées de source) — ne pas les faire dériver de `template/SKILL.md` ni les réécrire pour coller aux conventions internes (ex. limite de ~500 lignes) : ce sont des skills tiers, pas des skills maison.
