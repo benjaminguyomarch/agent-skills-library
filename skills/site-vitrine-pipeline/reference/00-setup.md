@@ -37,7 +37,7 @@ echo "Initialisation du projet..."
 npm init -y
 
 echo "Installation des dépendances..."
-npm install -D tailwindcss          # Tailwind v4 (CLI inclus)
+npm install -D tailwindcss @tailwindcss/cli   # Tailwind v4 : le CLI est un paquet séparé depuis la 4.x, "tailwindcss" seul ne fournit plus de binaire
 npm install -D marked               # Markdown → HTML
 npm install -D gray-matter          # Parsing frontmatter YAML
 npm install -D chokidar-cli         # Watch mode
@@ -74,7 +74,7 @@ echo "  npm run preview  → serveur local → localhost:3000"
 
 ## Ne pas faire
 
-- Ne pas installer `@tailwindcss/cli` — Tailwind v4 inclut son propre CLI dans le package `tailwindcss`
+- Ne pas installer `tailwindcss` seul en pensant que le CLI suit : depuis la 4.x, `tailwindcss` est uniquement le moteur (plugin PostCSS/`@theme`), le binaire `tailwindcss` en ligne de commande vient du paquet séparé `@tailwindcss/cli` — sans lui, `npm run build` échoue avec `command not found`
 - Ne pas initialiser de dépôt git (le projet peut déjà en avoir un)
 - Ne pas créer de fichiers autres que `setup.sh` et `package.json`
 

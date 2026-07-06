@@ -22,7 +22,7 @@ Pipeline de production d'un site vitrine statique orienté conversion, validé s
 ## When to use this skill
 
 - Nouveau site vitrine client (thérapeute, artisan, indépendant, TPE)
-- Refonte d'un site statique existant vers cette stack
+- Refonte d'un site statique existant vers cette stack — y compris un projet déjà fonctionnel qui avait délibérément écarté Tailwind (ex. `veille-ux-ui`, DEC-001 revenue sur DEC-003) : dans ce cas, ne pas copier les snippets Morgane tels quels (booking Doctolib, testimonials, hero thérapeute) — le pattern (tokens `@theme` depuis `theme.json`, classes sémantiques via `@apply`, atoms/molecules/organisms comme documentation vivante) s'applique, le contenu des composants doit refléter le domaine réel du site cible
 - Trigger phrases : "site vitrine", "site client", "comme morgane"
 
 Ne **pas** utiliser pour une app avec état serveur ou authentification — cette stack est volontairement sans framework.
