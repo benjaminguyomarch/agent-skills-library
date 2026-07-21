@@ -37,6 +37,7 @@ agent-skills-library/
 │   └── SKILL.md               # starting point for every new skill
 ├── skills/                    # skills maison
 │   ├── animation-vocabulary/  # vendoré (MIT) — glossaire d'effets d'animation
+│   ├── audit-mes-skills/      # audite les 5 sources de vérité des skills (déclaré/disque/git/copié/installé)
 │   ├── css-architecture/      # CSS modulaire + Web Components natifs (ex-portfolionew2)
 │   ├── design-tokens-setup/   # tokens 3 niveaux → Figma/Tailwind/Style Dictionary/Webflow
 │   ├── emil-design-eng/       # vendoré (MIT) — UI polish & animation, philosophie Emil Kowalski
