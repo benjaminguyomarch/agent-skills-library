@@ -36,16 +36,21 @@ agent-skills-library/
 ├── template/
 │   └── SKILL.md               # starting point for every new skill
 ├── skills/                    # skills maison
-│   ├── example-skill/         # reference skill in the correct format
-│   ├── seo-audit/             # audit SEO post-déploiement (PageSpeed, pa11y, headers)
-│   ├── visual-diagram/        # flowcharts & mind maps Whimsical
-│   ├── site-vitrine-pipeline/ # pipeline 16 étapes site vitrine statique (ex-morgane)
-│   ├── design-tokens-setup/   # tokens 3 niveaux → Figma/Tailwind/Style Dictionary/Webflow
-│   ├── prd-writer/            # PRD + doc architecture technique (format ds2)
+│   ├── animation-vocabulary/  # vendoré (MIT) — glossaire d'effets d'animation
 │   ├── css-architecture/      # CSS modulaire + Web Components natifs (ex-portfolionew2)
+│   ├── design-tokens-setup/   # tokens 3 niveaux → Figma/Tailwind/Style Dictionary/Webflow
 │   ├── emil-design-eng/       # vendoré (MIT) — UI polish & animation, philosophie Emil Kowalski
+│   ├── example-skill/         # reference skill in the correct format
+│   ├── n8n-gotchas/           # pièges n8n à échec silencieux (Merge, Basic LLM Chain, Code node)
+│   ├── nouveau-projet/        # scaffolde un projet dans projets/ depuis un template
+│   ├── prd-writer/            # PRD + doc architecture technique (format ds2)
+│   ├── project-docs-sync/     # audit doc-vs-code d'un projet (README/CLAUDE.md/rules/memory)
+│   ├── project-guard/         # garde-fous build script (validation JSON, pre-deploy checklist)
 │   ├── review-animations/     # vendoré (MIT) — revue stricte d'animations, invocation explicite
-│   └── animation-vocabulary/  # vendoré (MIT) — glossaire d'effets d'animation
+│   ├── roadmap-artifact-sync/ # tient un Artifact roadmap à jour à chaque étape de plan
+│   ├── seo-audit/             # audit SEO post-déploiement (PageSpeed, pa11y, headers)
+│   ├── supabase-sync/         # provisionne/relie un projet Supabase via CLI
+│   └── visual-diagram/        # flowcharts & mind maps Whimsical
 ├── external/                  # librairies tierces clonées (lecture/inspiration)
 │   ├── anthropics-skills/     # officiel : frontend-design, theme-factory, docx/pdf/pptx/xlsx…
 │   └── superpowers/           # méthodologie : brainstorm→plan→TDD→debug (installer en plugin)
