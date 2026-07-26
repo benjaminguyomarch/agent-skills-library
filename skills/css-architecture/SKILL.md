@@ -52,6 +52,30 @@ Règles : les composants consomment uniquement les variables de `base/variables.
 3. **Isoler l'état** : l'état vit dans l'élément, jamais en variable globale
 4. **Tester** : créer `tests/<nom>.html` couvrant toutes les variantes avant d'utiliser le composant en page
 
+## Pièges connus (capitalisés depuis des projets réels)
+
+Pattern récurrent trouvé indépendamment sur 2 projets (`stationbest` BLK-005/BLK-006,
+`site-perso-react` LRN-003) — vaut pour CSS vanilla comme pour Tailwind, c'est un
+comportement flexbox, pas une question de méthode : **un enfant flex perd sa largeur
+attendue dès qu'aucune largeur explicite n'est posée dessus.**
+
+- `max-width` seul (sans `width:100%`) redevient un calcul *shrink-to-fit* dès que le
+  parent centre son contenu en flex/inline plutôt qu'en bloc classique — la largeur
+  finit par dépendre du contenu réellement visible (ex. un panneau togglé en
+  `display:none` change la largeur du panneau resté visible).
+- `mx-auto max-w-*` (Tailwind) sans `w-full` sur un enfant direct d'un parent `flex` a
+  le même symptôme : la spec CSS fait primer les marges `auto` sur `align-items:
+  stretch`, donc l'enfant se dimensionne à son contenu au lieu d'occuper la largeur max.
+- `align-items:flex-start` change d'axe avec `flex-direction` : en `column` (typiquement
+  un breakpoint mobile), il agit sur la largeur au lieu de la hauteur et peut réduire un
+  enfant à sa taille de contenu minimale.
+
+**Règle qui en découle** : sur tout conteneur flex destiné à garder une largeur stable
+(surtout avec des panneaux togglés ou un breakpoint qui change `flex-direction`), poser
+`width:100%` (ou `w-full` en Tailwind) explicitement sur l'enfant concerné — ne jamais
+compter sur le comportement par défaut de `width:auto`. Vérifier en réduisant la fenêtre
+sous le breakpoint concerné, pas seulement en desktop.
+
 ## Vérification
 
 `grep -r "#[0-9a-fA-F]\{6\}" css/components/` ne doit rien retourner (tokens uniquement) ; chaque composant a sa page de test qui s'affiche sans erreur console.

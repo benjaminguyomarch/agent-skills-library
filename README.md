@@ -48,8 +48,8 @@ agent-skills-library/
 │   ├── project-docs-sync/     # audit doc-vs-code d'un projet (README/CLAUDE.md/rules/memory)
 │   ├── project-guard/         # garde-fous build script (validation JSON, pre-deploy checklist)
 │   ├── review-animations/     # vendoré (MIT) — revue stricte d'animations, invocation explicite
-│   ├── roadmap-artifact-sync/ # tient un Artifact roadmap à jour à chaque étape de plan
 │   ├── seo-audit/             # audit SEO post-déploiement (PageSpeed, pa11y, headers)
+│   ├── site-vitrine-pipeline/ # pipeline 16 étapes site vitrine statique (ex-portfolio Morgane)
 │   ├── supabase-sync/         # provisionne/relie un projet Supabase via CLI
 │   └── visual-diagram/        # flowcharts & mind maps Whimsical
 ├── external/                  # librairies tierces clonées (lecture/inspiration)
